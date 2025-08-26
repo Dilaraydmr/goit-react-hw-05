@@ -1,26 +1,28 @@
 import { Routes, Route } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
-import Home from "../../pages/Home";
-import Movies from "../../pages/Movies";
-import MovieDetails from "../../pages/MovieDetails";
+import HomePage from "../../pages/HomePage/HomePage";
+import MoviesPage from "../../pages/MoviesPage/MoviesPage";
+import MovieDetailsPage from "../../pages/MovieDetailsPage/MovieDetailsPage";
 import MovieCast from "../MovieCast/MovieCast";
 import MovieReviews from "../MovieReviews/MovieReviews";
+import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
-function App() {
+const App = () => {
   return (
     <div>
       <Navigation />
+
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-        <Route path="/movies/:movieId" element={<MovieDetails />}>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/movies" element={<MoviesPage />} />
+        <Route path="/movies/:movieId" element={<MovieDetailsPage />}>
           <Route path="cast" element={<MovieCast />} />
           <Route path="reviews" element={<MovieReviews />} />
         </Route>
-        <Route path="*" element={<h2>Sayfa Bulunamadı</h2>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );
-}
+};
 
 export default App;
