@@ -1,39 +1,62 @@
 import axios from "axios";
 
 const BASE_URL = "https://api.themoviedb.org/3";
-const API_KEY = import.meta.env.VITE_TMDB_KEY;
+
+
+const ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzZmMGE2Njg2MjkwZTFkMTMzYzlkOWE0MzlmNTYzMyIsIm5iZiI6MTc1NjI0MDIwMi40NCwic3ViIjoiNjhhZTE5NGE0MDQ0NjMwODllMGY4N2Y1Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.zVR2BXaLxHlsAsHJ1pthr6L5lwlrC7dIF-lV1JlU6mc";
+
+const options = {
+  headers: {
+    Authorization: `Bearer ${ACCESS_TOKEN}`,
+  },
+};
 
 export const fetchTrendingMovies = async () => {
-  const resp = await axios.get(`${BASE_URL}/trending/movie/day`, {
-    params: { api_key: API_KEY },
-  });
-  return resp.data.results;
+  try {
+    const response = await axios.get(`${BASE_URL}/trending/movie/day`, options);
+    return response.data.results;
+  } catch (error) {
+    console.error("Error while getting popular movies:", error);
+    throw error;
+  }
 };
 
 export const fetchSearchMovies = async (query) => {
-  const resp = await axios.get(`${BASE_URL}/search/movie`, {
-    params: { api_key: API_KEY, query },
-  });
-  return resp.data.results;
+  try {
+    const resp = await axios.get(`${BASE_URL}/search/movie?query=${query}`, options);
+    return resp.data.results;
+  } catch (error) {
+    console.error("Error fetching search movies:", error);
+    throw error;
+  }
 };
 
 export const fetchMovieDetails = async (movieId) => {
-  const resp = await axios.get(`${BASE_URL}/movie/${movieId}`, {
-    params: { api_key: API_KEY },
-  });
-  return resp.data;
+  try {
+    const resp = await axios.get(`${BASE_URL}/movie/${movieId}`, options);
+    return resp.data;
+  } catch (error) {
+    console.error("Error fetching movie details:", error);
+    throw error;
+  }
 };
 
 export const fetchMovieCast = async (movieId) => {
-  const resp = await axios.get(`${BASE_URL}/movie/${movieId}/credits`, {
-    params: { api_key: API_KEY },
-  });
-  return resp.data.cast;
+  try {
+    const resp = await axios.get(`${BASE_URL}/movie/${movieId}/credits`, options);
+    return resp.data.cast;
+  } catch (error) {
+    console.error("Error fetching movie cast:", error);
+    throw error;
+  }
 };
 
 export const fetchMovieReviews = async (movieId) => {
-  const resp = await axios.get(`${BASE_URL}/movie/${movieId}/reviews`, {
-    params: { api_key: API_KEY },
-  });
-  return resp.data.results;
+  try {
+    const resp = await axios.get(`${BASE_URL}/movie/${movieId}/reviews`, options);
+    return resp.data.results;
+  } catch (error) {
+    console.error("Error fetching movie reviews:", error);
+    throw error;
+  }
 };
