@@ -7,6 +7,8 @@ import MovieCast from "../MovieCast/MovieCast";
 import MovieReviews from "../MovieReviews/MovieReviews";
 import NotFoundPage from "../../pages/NotFoundPage/NotFoundPage";
 
+
+
 const App = () => {
   return (
     <div>

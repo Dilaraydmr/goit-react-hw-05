@@ -1,17 +1,21 @@
 import { useState } from "react";
+import { fetchSearchMovies } from "../../services/api"; // api.js fonksiyonunu çağırıyoruz
 import styles from "./MoviesPage.module.css";
 
 function MoviesPage() {
-    const [query, setQuery] = useState("");
+    const [query, setQuery] = useState("");      
+    const [movies, setMovies] = useState([]);   
 
-    const handleSubmit = (e) => {
+    // Arama butonuna basınca çalışacak
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log("Search:", query);
-        // Burada API çağrısı yapılacak
+        if (!query.trim()) return; // boş arama yapmaSearchMovies(query); 
+        setMovies(results); 
     };
 
     return (
         <div className={styles.container}>
+            {/* Arama kutusu */}
             <form onSubmit={handleSubmit} className={styles.form}>
                 <input
                     type="text"
@@ -24,6 +28,21 @@ function MoviesPage() {
                     🔍 Search
                 </button>
             </form>
+
+            {/* Filmleri listele */}
+            <ul className={styles.movieList}>
+                {movies.map((movie) => (
+                    <li key={movie.id} className={styles.movieItem}>
+                        {movie.poster_path && (
+                            <img
+                                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
+                                alt={movie.title}
+                            />
+                        )}
+                        <p>{movie.title}</p>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
