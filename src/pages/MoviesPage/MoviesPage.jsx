@@ -1,16 +1,22 @@
 import { useState } from "react";
-import { fetchSearchMovies } from "../../services/api"; // api.js fonksiyonunu çağırıyoruz
+import { fetchSearchMovies } from "../../services/api";
 import styles from "./MoviesPage.module.css";
 
 function MoviesPage() {
-    const [query, setQuery] = useState("");      
-    const [movies, setMovies] = useState([]);   
+    const [query, setQuery] = useState("");
+    const [movies, setMovies] = useState([]);
 
     // Arama butonuna basınca çalışacak
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!query.trim()) return; // boş arama yapmaSearchMovies(query); 
-        setMovies(results); 
+        if (!query.trim()) return;
+
+        try {
+            const results = await fetchSearchMovies(query); // ✅ API çağrısı eklendi
+            setMovies(results);
+        } catch (error) {
+            console.error("Error fetching movies:", error);
+        }
     };
 
     return (

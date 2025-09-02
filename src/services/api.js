@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "https://api.themoviedb.org/3";
 
 
-const ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIwMzZmMGE2Njg2MjkwZTFkMTMzYzlkOWE0MzlmNTYzMyIsIm5iZiI6MTc1NjI0MDIwMi40NCwic3ViIjoiNjhhZTE5NGE0MDQ0NjMwODllMGY4N2Y1Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.zVR2BXaLxHlsAsHJ1pthr6L5lwlrC7dIF-lV1JlU6mc";
+const ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZmRkOTY3NTM4YjdmM2RhMDAzODI2YzAxZmJiOGIwZSIsIm5iZiI6MTc1NjI0MDIwMi40NCwic3ViIjoiNjhhZTE5NGE0MDQ0NjMwODllMGY4N2Y1Iiwic2NvcGVzIjpbImFwaV9yZWFkIl0sInZlcnNpb24iOjF9.pV1U2UAMjACU1jHXAtlNDVL2QhML0YFjV3HU7pY0DkM";
 
 const options = {
   headers: {
