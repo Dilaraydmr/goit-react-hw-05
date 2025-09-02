@@ -26,7 +26,7 @@ const MovieReviews = () => {
 
     if (loading) return <p>Loading reviews...</p>;
     if (error) return <p>{error}</p>;
-    if (reviews.length === 0) return <p>No reviews available.</p>;
+    if (reviews.length === 0) return <p>Sorry, there are no reviews for this movie yet.</p>;
 
     return (
         <ul className={styles.reviewList}>
