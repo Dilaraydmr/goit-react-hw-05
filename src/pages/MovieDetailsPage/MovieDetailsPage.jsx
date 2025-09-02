@@ -55,18 +55,22 @@ const MovieDetailsPage = () => {
             </div>
             <div className={styles.additional}>
                 <h3>Additional Information</h3>
-                <ul>
-                    <li>
-                        <Link to="cast" state={{ from: backLinkRef.current }}>
-                            Cast
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="reviews" state={{ from: backLinkRef.current }}>
-                            Reviews
-                        </Link>
-                    </li>
-                </ul>
+                <div className={styles.buttons}>
+                    <Link
+                        to="cast"
+                        state={{ from: backLinkRef.current }}
+                        className={styles.button}
+                    >
+                        Cast
+                    </Link>
+                    <Link
+                        to="reviews"
+                        state={{ from: backLinkRef.current }}
+                        className={styles.button}
+                    >
+                        Reviews
+                    </Link>
+                </div>
             </div>
             <Outlet />
         </div>
