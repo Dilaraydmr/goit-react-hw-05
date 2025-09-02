@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { FaHome, FaFilm } from "react-icons/fa"; // ikonlar için
-import styles from "./Navigation.module.css"; // ✅ styles olarak import et
+import { FaHome, FaFilm } from "react-icons/fa"; 
+import styles from "./Navigation.module.css";
 
 function Navigation() {
     return (

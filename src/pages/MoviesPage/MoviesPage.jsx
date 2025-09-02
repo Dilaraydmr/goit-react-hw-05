@@ -1,33 +1,53 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { fetchSearchMovies } from "../../services/api";
+import MovieList from "../../components/MovieList/MovieList";
 import styles from "./MoviesPage.module.css";
 
 function MoviesPage() {
-    const [query, setQuery] = useState("");
     const [movies, setMovies] = useState([]);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [query, setQuery] = useState("");
 
-    // Arama butonuna basınca çalışacak
-    const handleSubmit = async (e) => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const searchQuery = searchParams.get("query") || "";
+
+   
+    useEffect(() => {
+        if (!searchQuery) return;
+
+        const getMovies = async () => {
+            setLoading(true);
+            setError(null);
+            try {
+                const results = await fetchSearchMovies(searchQuery);
+                setMovies(results);
+            } catch (err) {
+                setError("Something went wrong while fetching movies.");
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        getMovies();
+    }, [searchQuery]);
+
+    
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (!query.trim()) return;
-
-        try {
-            const results = await fetchSearchMovies(query); // ✅ API çağrısı eklendi
-            setMovies(results);
-        } catch (error) {
-            console.error("Error fetching movies:", error);
-        }
+        setSearchParams({ query: query.trim() });
     };
 
     return (
         <div className={styles.container}>
-            {/* Arama kutusu */}
             <form onSubmit={handleSubmit} className={styles.form}>
                 <input
                     type="text"
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Movie name"
+                    placeholder="Search movies"
                     className={styles.input}
                 />
                 <button type="submit" className={styles.button}>
@@ -35,20 +55,10 @@ function MoviesPage() {
                 </button>
             </form>
 
-            {/* Filmleri listele */}
-            <ul className={styles.movieList}>
-                {movies.map((movie) => (
-                    <li key={movie.id} className={styles.movieItem}>
-                        {movie.poster_path && (
-                            <img
-                                src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
-                                alt={movie.title}
-                            />
-                        )}
-                        <p>{movie.title}</p>
-                    </li>
-                ))}
-            </ul>
+            {loading && <p>Loading...</p>}
+            {error && <p>{error}</p>}
+
+            {movies.length > 0 && <MovieList movies={movies} />}
         </div>
     );
 }

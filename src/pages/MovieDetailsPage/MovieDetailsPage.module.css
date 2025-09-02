@@ -1,0 +1,46 @@
+.container {
+  padding: 20px;
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 20px;
+  text-decoration: none;
+  color: #183b56;
+  font-weight: bold;
+}
+
+.movie {
+  display: flex;
+  gap: 20px;
+}
+
+.image {
+  border-radius: 8px;
+}
+
+.details {
+  max-width: 600px;
+}
+
+.additional {
+  margin-top: 30px;
+}
+
+.additional ul {
+  list-style: none;
+  padding: 0;
+}
+
+.additional li {
+  margin-bottom: 10px;
+}
+
+.additional a {
+  text-decoration: none;
+  color: #0077cc;
+}
+
+.additional a:hover {
+  text-decoration: underline;
+}
