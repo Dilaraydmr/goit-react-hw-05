@@ -1,50 +1,79 @@
 .container {
-  padding: 20px;
+  padding: 40px 20px;
+  background: #fffefe;
+  min-height: 100vh;
 }
 
 .title {
-  font-size: 2rem;
+  color: #9c0937;
   text-align: center;
-  margin-bottom: 20px;
+  font-size: 2rem;
+  font-family: "Montserrat", sans-serif;
+  margin-bottom: 30px;
 }
 
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 15px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  justify-items: center;
   list-style: none;
   padding: 0;
 }
 
 .item {
-  overflow: hidden;
-  border-radius: 8px;
-  transition: transform 0.2s ease;
+  width: 100%;
 }
 
-.item:hover {
-  transform: scale(1.05);
+.card {
+  display: block;
+  width: 100%;
+  background: #c356cb;
+  border-radius: 15px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 4px 12px rgba(7, 228, 228, 0.989);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgb(232, 227, 227);
 }
 
 .image {
   width: 100%;
-  display: block;
-  border-radius: 8px;
-}
-
-.name {
-  text-align: center;
-  margin-top: 8px;
-  font-size: 1rem;
+  height: 330px;
+  object-fit: cover;
+  border-bottom: 2px solid #444;
 }
 
 .placeholder {
   width: 100%;
-  height: 225px;
-  background-color: #ccc;
+  height: 330px;
+  background: #444;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  color: #444;
+}
+
+.info {
+  padding: 12px;
+  text-align: center;
+}
+
+.name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #f1f1f1;
+  margin: 8px 0 4px;
+  font-family: "Poppins", sans-serif;
+}
+
+.date {
+  font-size: 0.9rem;
+  color: #bbbbbb;
+  font-family: "Roboto", sans-serif;
 }
