@@ -36,6 +36,7 @@ const MovieDetailsPage = () => {
             <Link to={backLinkRef.current} className={styles.backLink}>
                 ← Go Back
             </Link>
+
             <div className={styles.movie}>
                 {movie.poster_path && (
                     <img
@@ -53,6 +54,7 @@ const MovieDetailsPage = () => {
                     <p>{movie.genres.map((g) => g.name).join(", ")}</p>
                 </div>
             </div>
+
             <div className={styles.additional}>
                 <h3>Additional Information</h3>
                 <div className={styles.buttons}>
@@ -72,7 +74,11 @@ const MovieDetailsPage = () => {
                     </Link>
                 </div>
             </div>
-            <Outlet />
+
+         
+            <div className={styles.extraContent}>
+                <Outlet />
+            </div>
         </div>
     );
 };
